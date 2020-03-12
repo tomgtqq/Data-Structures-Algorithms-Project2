@@ -1,0 +1,12 @@
+Analyze:
+
+Problem 1: LRU Cache
+
+Analyze:
+I need to design the stored elements in some sort of structure because I need to find the least recently used entry. The LinkedList has an order data structure. I need to keep track of what's the next item. so I need to move the used node to the list head. and I'd better used a double linked list to easily move the node. All operations must take O(1) time, So I can't use a while loop to find the node. where the inefficiency is, how can I do something to address that inefficiency and make it more efficient. so I need a cache map to get data immediately.
+
+Subtask:
+1. DLinkedList to track the order
+2. Cache map to get the data immediately
+
+All operations take O(1) time complexity and there is a Double linked list. so the space complexity is linear O(n)

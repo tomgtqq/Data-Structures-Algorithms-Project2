@@ -18,10 +18,10 @@ class HuffManTreeNode(object):
     
     def get_right_child(self):
         return self.right
-    
+
 class HuffManTree(object):
     def __init__(self, data=None):
-        self.frequencies = sorted(Counter(data).most_common(), key=lambda x: x[1])
+        self.frequencies = data
         
     def get_tree_root(self):
         while len(self.frequencies) > 1:
@@ -62,21 +62,36 @@ def huffman_encoding_recursion(node, code=''):
     encode_map.update(huffman_encoding_recursion(right_node, code + '1'))
     return encode_map
 
-def huffman_encoding(data):
-    if not data:
-        return
+def huffman_encoding(data=None):
+    if data is None:
+        return (None,None)
+    if len(data)== 0:
+        return (data, None)
     
-    huffman_tree = HuffManTree(data)
+    pro_data = sorted(Counter(data).most_common(), key=lambda x: x[1])
+    if len(pro_data) == 1:
+        return('0'*pro_data[0][1],pro_data)
+    
+    huffman_tree = HuffManTree(pro_data)
     root_node = huffman_tree.get_tree_root()
     encode_map = huffman_encoding_recursion(root_node)
     
     encoded_list = [encode_map[c] for c in data]
     encoded_string = ''.join(encoded_list)
- 
+    
     return(encoded_string, root_node)
-
-def huffman_decoding(data,root):
-    node = root
+    
+def huffman_decoding(data, decoder):
+    if data is None:
+        return None
+    
+    if len(data)== 0:
+        return data
+    
+    if type(decoder) is list:
+        return(decoder[0][1]*decoder[0][0])
+            
+    node = decoder
     decoded_data = ''
 
     for b in data:   
@@ -88,6 +103,75 @@ def huffman_decoding(data,root):
         
         if type(node) is str:
             decoded_data += node
-            node = root
+            node = decoder
 
     return decoded_data
+
+def test_huffman_coding(a_great_sentence):
+
+    print ("The size of the data is: {}\n".format(sys.getsizeof(a_great_sentence)))
+    print ("The content of the data is: {}\n".format(a_great_sentence))
+
+    encoded_data, decoder = huffman_encoding(a_great_sentence)
+
+    if(encoded_data):
+        print ("The size of the encoded data is: {}\n".format(sys.getsizeof(int(encoded_data, base=2))))
+    else:
+        print ("The size of the encoded data is: {}\n".format(encoded_data, base=2))
+    print ("The content of the encoded data is: {}\n".format(encoded_data))
+
+    decoded_data = huffman_decoding(encoded_data, decoder)
+
+    print ("The size of the decoded data is: {}\n".format(sys.getsizeof(a_great_sentence)))
+    print ("The content of the encoded data is: {}\n".format(decoded_data))
+
+print('-------------Test case 1:a_great_sentence = "Data Structures & Algorithms"---------------')
+'''
+The size of the data is: 77
+
+The content of the data is: Data Structures & Algorithms
+
+The size of the encoded data is: 40
+
+The content of the encoded data is: 1011010000111000001101110110101001110000111001010110011010001110100011101111100111011111001011111011000000011010
+
+The size of the decoded data is: 77
+
+The content of the encoded data is: Data Structures & Algorithms
+'''
+a_great_sentence = "Data Structures & Algorithms"
+test_huffman_coding(a_great_sentence)
+
+print('-----------------------Test case 2 : a_great_sentence = "aaaaaa"--------------------------')
+'''
+The size of the data is: 55
+
+The content of the data is: aaaaaa
+
+The size of the encoded data is: 24
+
+The content of the encoded data is: 000000
+
+The size of the decoded data is: 55
+
+The content of the encoded data is: aaaaaa
+'''
+a_great_sentence = "aaaaaa"
+test_huffman_coding(a_great_sentence)
+
+print('-------------------------Test case 3 : a_great_sentence = ""-------------------------------')
+'''
+The size of the data is: 49
+
+The content of the data is: 
+
+The size of the encoded data is: 
+
+The content of the encoded data is: 
+
+The size of the decoded data is: 49
+
+The content of the encoded data is:
+'''
+a_great_sentence = ""
+test_huffman_coding(a_great_sentence)

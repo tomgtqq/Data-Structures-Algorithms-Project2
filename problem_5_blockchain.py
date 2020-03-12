@@ -1,14 +1,19 @@
-import time
 import hashlib
+import time
 
 
 class Block:
-    def __init__(self, data):
-        self.hash = ""
-        self.height = 0
-        self.body = data
-        self.time = time.time()
-        self.previousblockhash = ""
+    def __init__(self, data, previous_hash=None):
+        self.timestamp = time.time()
+        self.data = data
+        self.previous_hash = previous_hash
+        self.hash = self.calc_hash()
+        self.next = None
+
+    def calc_hash(self):
+        sha = hashlib.sha256()
+        sha.update(self.data.encode('utf-8'))
+        return sha.hexdigest()
 
     def __repr__(self):
         return str(self.__dict__)
@@ -16,26 +21,51 @@ class Block:
 
 class Blockchain:
     def __init__(self):
-        self.chain = []
-        self.add_block(Block("Genesis block"))
+        self.head = Block(data="Genesis block")
 
-    def add_block(self, new_block):
-        new_block.height = len(self.chain)
+    def add_block(self, data):
+        if not data:
+            print("please check the data")
+            return
 
-        if(len(self.chain) > 0):
-            new_block.previousblockhash = self.chain[len(self.chain) - 1].hash
+        block = self.head
+        while block.next:
+            block = block.next
+        block.next = Block(data, block.hash)
 
-        new_block.hash = self._calc_hash(new_block)
-        self.chain.append(new_block)
+    def get_block(self, hash_value=None):
+        if not hash_value:
+            print("Please input block hash")
+            return
 
-    def get_block(self, height):
-        return self.chain[height]
-
-    def _calc_hash(self, data):
-        sha = hashlib.sha256()
-        hash_str = repr(data).encode('utf-8')
-        sha.update(hash_str)
-        return sha.hexdigest()
+        block = self.head
+        while block:
+            if block.hash == str(hash_value):
+                return (block.hash, block.data, block.timestamp)
+            block = block.next
+        return "Block Not Found"
 
     def __repr__(self):
-        return str(self.__dict__)
+        block = self.head
+        blockchain_info = []
+        while block:
+            blockchain_info.append((block.hash, block.data, block.timestamp))
+            block = block.next
+        return '=>'.join(map(str, blockchain_info))
+
+
+# Create a private blockchain, there is a genesis block when inital
+blockchain = Blockchain()
+print(blockchain)
+
+print("----------------------Test 1 add 2 blocks-------------------------------------------")
+blockchain.add_block(data="First Block")
+blockchain.add_block(data="Second Block")
+
+print(blockchain)
+
+print("----------Test 2 should not create new block for storing empty data-----------------")
+blockchain.add_block(data="")
+
+print("----------------------Test 3 get block by hash----------------------------------------")
+blockchain.get_block("")

@@ -1,0 +1,34 @@
+Analyze:
+I need to calculate the frequency of each character in the string, so I used Counter . and then I need a sorted list for Huffman coding. and I chose the latest frequency tow item from the list. I need to create a Huffman tree to encoding my data. so I create a Node class and Tree class. I made each unique character as a leaf node.
+
+"huffman_encoding" takes O(n), because I using a while loop to create tree 
+
+while len(self.frequencies) > 1:
+            # create subtree from the lowest frequencies node to the highest frequencies node 
+            (key1, freq1) = self.frequencies[0]
+            (key2, freq2) = self.frequencies[1]
+            self.frequencies = self.frequencies[2:]
+            
+            # The keys are string type in leaf node, otherwise are node type
+            left_node = key1
+            right_node = key2
+            node = HuffManTreeNode(left_node, right_node)
+
+            self.frequencies.append((node, freq1+freq2))
+            self.frequencies = sorted(self.frequencies, key=lambda x: x[1])
+
+
+"huffman_decoding" takes O(n)
+
+for b in data:   
+        if b == '0' and type(node) is HuffManTreeNode:
+            node = node.get_left_child()
+
+        elif b == '1' and type(node) is HuffManTreeNode:
+            node = node.get_right_child()
+        
+        if type(node) is str:
+            decoded_data += node
+            node = decoder
+
+The tree is expending data structures. I think the space complexity is O(n)

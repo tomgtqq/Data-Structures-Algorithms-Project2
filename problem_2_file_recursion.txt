@@ -1,0 +1,23 @@
+Analyze:
+I need to find a recursion solution to solve the problem . so I need to solve smaller instances of the same problem. if there is one file in the folder. I need to find that file with a given "suffix" and return it. if there is one folder in the folder. I need to involve calling the function from within itself and wait to get "output" until searching all folders and return all the results.
+
+Subtask:
+
+1.find where invoking function
+2.define base case
+
+change input All operations take O(n) time complexity 
+
+def find_files_recursion(suffix, path):
+    pathsList = []
+    if os.path.isfile(path):
+        if path.endswith(suffix):
+            return[path]
+    if os.path.isdir(path):
+        for item in os.listdir(path):       ---> for loop to takes O(n)
+            subPath = os.path.join(path, item)
+            pathsList.extend(find_files_recursion(suffix, subPath))
+    return pathsList
+
+
+and there is an expanding char list(pathsList = []), so the space complexity is O(n)

@@ -1,0 +1,11 @@
+Analyze:
+
+I need to create a private blockchain. Create a Block class and Blockchain class. I chose a Linkedlist for Blockchain . because It's safe to store data and the Block can linked together. also I need to link each block by hash. so I need to store the  previous block hash in current block. There are "Genesis block" in Bitcoin and Etherum when it was created. So I initial "Genesis block".
+
+Blockchain class "add_block()", "get_block()" takes O(n) time complexity.  
+
+    while block.next:     -->  "while loop" to 
+        block = block.next
+
+
+I think it's linear space complexity O(n) , Linkedlist is expanding data structure

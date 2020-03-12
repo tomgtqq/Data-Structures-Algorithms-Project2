@@ -1,0 +1,9 @@
+Analyze:
+I need to find a recursion solution with a cache to solve the problem.
+Subtask:
+- Design recursion solution to check all groups
+- Define a cache to store the check result
+
+The function **is_user_in_group_recursion** takes O(n) time complexity, I think the "for loop" is O(n) and "recursion solution"is O(log(n)).The time complexity isn't O(nlog(n))
+
+I think it's linear space complexity O(n) , beacues 2 list(),1 dict() is scalable

@@ -1,0 +1,31 @@
+Analyze:
+I used "while loop" to traverse tow linked Lists and check the element by set. 
+
+I need a new Linked list for "Union" and "intersection" operation. becuase, I don't want to change the original LinkedList. 
+
+ - The function "intersection()" and "union()"  2 'while loop' ,1 'for looptakes' O(n)+O(m)+O(s), so 
+ The time complexity is O(n).
+
+	 while node1:
+	    union_set.add(node1.value)
+	    node1 = node1.next
+
+	node2 = llist_2.head
+	while node2:
+	    union_set.add(node2.value)
+	    node2 = node2.next
+	    
+	for value in union_set:
+	    union_linkedlist.append(value)
+
+ - "intersection()"" takes O(n) space complexity.  
+
+    intersection_linkedlist = LinkedList()    -- O(n)
+    llist_1_set = set()  -- O(n)
+    llist_2_set = set()  -- O(n)
+
+ - "union()" takes O(n)  space complexity. 
+
+    union_linkedlist = LinkedList()  -- O(n)
+    union_set = set()   -- O(n)
+
