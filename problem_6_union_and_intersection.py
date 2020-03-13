@@ -104,17 +104,17 @@ for i in element_1:
 for i in element_2:
     llist_2.append(i)
 
-print('------Linked Lists------')
+print('Linked Lists:')
 print(element_1)
 print(element_2)
 
 result1 = union(llist_1, llist_2)
-print('------Union result------')
-print(result1)
+print('Union result:')
+print(result1)  # 0 -> 1 -> 4 -> 5 -> 8
 
 result2 = intersection(llist_1, llist_2)
-print('------Intersection result------')
-print(result2)
+print('Intersection result:')
+print(result2)  # 8 -> 1 -> 4 -> 5
 
 
 print("---------------------------------Test case 2------------------------------------")
@@ -132,17 +132,17 @@ for i in element_2:
     linked_list_2.append(i)
 
 
-print('------Linked Lists------')
+print('Linked Lists:')
 print(element_1)
 print(element_2)
 
 result1 = union(linked_list_1, linked_list_2)
-print('------Union result------')
-print(result1)
+print('Union result:')
+print(result1)  # 32 -> 65 -> 2 -> 35 -> 3 -> 4 -> 6 -> 1 -> 9 -> 11 -> 21
 
 result2 = intersection(linked_list_1, linked_list_2)
-print('------Intersection result------')
-print(result2)
+print('Intersection result:')
+print(result2)  # 4 -> 21 -> 6
 
 
 print("----------------------------------Test case 3-----------------------------------")
@@ -159,14 +159,67 @@ for i in element_3:
 for i in element_4:
     linked_list_4.append(i)
 
-print('------Linked Lists------')
+print('Linked Lists:')
 print(element_3)
 print(element_4)
 
 result1 = union(linked_list_3, linked_list_4)
-print('------Union result------')
+print('Union result:')
+# should return "65 -> 2 -> 35 -> 3 -> 4 -> 6 -> 1 -> 7 -> 8 -> 9 -> 11 -> 21 -> 23"
 print(result1)
 
 result2 = intersection(linked_list_3, linked_list_4)
-print('------Intersection result------')
-print(result2)
+print('Intersection result:')
+print(result2)  # should return "There is no intersection"
+
+print("----------------------------------Test case 4 : edge cases-------------------------")
+
+linked_list_3 = LinkedList()
+linked_list_4 = LinkedList()
+
+element_3 = []
+element_4 = []
+
+for i in element_3:
+    linked_list_3.append(i)
+
+for i in element_4:
+    linked_list_4.append(i)
+
+print('Linked Lists:')
+print(element_3)
+print(element_4)
+
+result1 = union(linked_list_3, linked_list_4)
+print('Union result:')
+print(result1)  # should return "There is no union"
+
+result2 = intersection(linked_list_3, linked_list_4)
+print('Intersection result:')
+print(result2)  # should return "There is no intersection"
+
+print("----------------------------------Test case 5 : edge cases-------------------------")
+
+linked_list_3 = LinkedList()
+linked_list_4 = LinkedList()
+
+element_3 = [0]
+element_4 = []
+
+for i in element_3:
+    linked_list_3.append(i)
+
+for i in element_4:
+    linked_list_4.append(i)
+
+print('Linked Lists:')
+print(element_3)
+print(element_4)
+
+result1 = union(linked_list_3, linked_list_4)
+print('Union result:')
+print(result1)  # should return "There is no union"
+
+result2 = intersection(linked_list_3, linked_list_4)
+print('Intersection result:')
+print(result2)  # should return "There is no intersection"

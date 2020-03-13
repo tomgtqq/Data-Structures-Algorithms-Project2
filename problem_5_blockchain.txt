@@ -4,7 +4,7 @@ I need to create a private blockchain. Create a Block class and Blockchain class
 
 Blockchain class "add_block()", "get_block()" takes O(n) time complexity.  
 
-    while block.next:     -->  "while loop" to 
+    while block.next:     --> O(n)
         block = block.next
 
 

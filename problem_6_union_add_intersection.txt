@@ -29,3 +29,4 @@ I need a new Linked list for "Union" and "intersection" operation. becuase, I do
     union_linkedlist = LinkedList()  -- O(n)
     union_set = set()   -- O(n)
 
+For the space complexity, I'm saving all the elements by linked list. so as the number of elements grows the space occupied or needed to store these elements increases as well proportionally to the number of added elements. so the space complexity is O(N)

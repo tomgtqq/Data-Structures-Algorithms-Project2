@@ -9,4 +9,23 @@ Subtask:
 1. DLinkedList to track the order
 2. Cache map to get the data immediately
 
-All operations take O(1) time complexity and there is a Double linked list. so the space complexity is linear O(n)
+For time complexity depending set() and get() method, I'm using  "self.cache = {}" to cache the node. so I could get a node from the cache for operation. The "get()" method takes O(1) time complexity.
+
+   def get(self, key):
+
+        node = self.cache.get(key)   --> O(1)
+        if not node:
+            return -1
+
+I'm adding new node in the head of linkedlist, so the "set()" method takes O(1).
+
+    def _add_node(self, node):
+        # add new node into DLinkedNode
+        node.next = self.head.next
+        self.head.next.previous = node     --> O(1)
+
+        node.previous = self.head
+        self.head.next = node
+
+
+I'm saving all the elements in a linked list. so as the number of elements grows the space occupied or needed to store these elements increases as well proportionally to the number of added elements. so the space complexity is O(N)

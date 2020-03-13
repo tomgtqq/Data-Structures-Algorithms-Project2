@@ -6,18 +6,6 @@ Subtask:
 1.find where invoking function
 2.define base case
 
-change input All operations take O(n) time complexity 
+For the space complexity, in the worst-case scenario, all the files in all the directories will match inputting suffix and we will have to save them so the complexity will be O(N*M). where N is the number of directories in the path and M the number of files in the directories.
 
-def find_files_recursion(suffix, path):
-    pathsList = []
-    if os.path.isfile(path):
-        if path.endswith(suffix):
-            return[path]
-    if os.path.isdir(path):
-        for item in os.listdir(path):       ---> for loop to takes O(n)
-            subPath = os.path.join(path, item)
-            pathsList.extend(find_files_recursion(suffix, subPath))
-    return pathsList
-
-
-and there is an expanding char list(pathsList = []), so the space complexity is O(n)
+For the time complexity, because how long the code will take to run would depend on how many directories and how many files have to be visited as well. so It's O(N*M).

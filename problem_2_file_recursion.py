@@ -22,6 +22,9 @@ def find_files(suffix=None, path=None):
     if path == None:
         return "Please input Args: path"
     try:
+        if not os.path.isdir(path):
+            return "Please input a vaild path"
+
         result = find_files_recursion(suffix, path)
         if len(result) == 0:
             result = "Not found"
@@ -47,3 +50,4 @@ print(find_files('.c', './testdir'))
 print(find_files(path='./testdir'))  # return "Please input Args: suffix"
 print(find_files(suffix='.c',))     # return "Please input Args: path"
 print(find_files('.cpp', "./testdir"))  # return "Not found"
+print(find_files('.cpp', "not_path"))  # return "Please input a vaild path"

@@ -92,7 +92,8 @@ if __name__ == "__main__":
 
     print(our_cache.get(1))  # returns 1
     print(our_cache.get(2))  # returns 2
-    print(our_cache.get(9))  # returns -1 because 9 is not present in the cache
+    # returns -1 because 9 is not present in the cache, edge cases
+    print(our_cache.get(9))
 
     our_cache.set(5, 5)
     our_cache.set(6, 6)
@@ -108,5 +109,7 @@ if __name__ == "__main__":
     print(our_cache.get(2))  # return 2
 
     our_cache = LRU_Cache(0)
-    our_cache.set(1, 1)  # return "Can't operate , the capacity cache is 0"
-    our_cache.get(1)  # return  "Can't operate , the capacity cache is 0"
+    # return "Can't operate , the capacity cache is 0" ,edge cases
+    our_cache.set(1, 1)
+    # return  "Can't operate , the capacity cache is 0" ,edge cases
+    our_cache.get(1)

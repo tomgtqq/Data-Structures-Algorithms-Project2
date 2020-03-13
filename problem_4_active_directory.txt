@@ -1,9 +1,13 @@
 Analyze:
-I need to find a recursion solution with a cache to solve the problem.
-Subtask:
-- Design recursion solution to check all groups
-- Define a cache to store the check result
 
-The function **is_user_in_group_recursion** takes O(n) time complexity, I think the "for loop" is O(n) and "recursion solution"is O(log(n)).The time complexity isn't O(nlog(n))
+I need to check if `user` is among the users of the group. If yes, `return True`. If not, move on to the groups of `group`. and then Iterate over the groups of `group`. Checking if `user` is among the users of each group by calling the function `is_user_in_group`.
 
-I think it's linear space complexity O(n) , beacues 2 list(),1 dict() is scalable
+For the space complexity, I'm saving all the elements by Group. so as the number of elements grows the space occupied or needed to store these elements increases as well proportionally to the number of added elements. so the space complexity is O(N*M*I) where "self.name" is string type takes O(I), The "self.users" are depending on how many "names" to be stored. so the space complexity is O(M*I), The "self.groups" are depending on how many "users" to be stored. so the space complexity is O(N*M*I).
+
+class Group(object):
+    def __init__(self, _name):
+        self.name = _name
+        self.groups = []
+        self.users = []
+
+For the time complexity, because how long the code will take to run would depend on how many "users" and "groups" to be checked so It's O(N*M). 

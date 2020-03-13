@@ -41,7 +41,7 @@ class Blockchain:
         block = self.head
         while block:
             if block.hash == str(hash_value):
-                return (block.hash, block.data, block.timestamp)
+                return (block.hash, block.data, block.timestamp, block.previous_hash)
             block = block.next
         return "Block Not Found"
 
@@ -49,7 +49,8 @@ class Blockchain:
         block = self.head
         blockchain_info = []
         while block:
-            blockchain_info.append((block.hash, block.data, block.timestamp))
+            blockchain_info.append(
+                (block.hash, block.data, block.timestamp, block.previous_hash))
             block = block.next
         return '=>'.join(map(str, blockchain_info))
 
@@ -68,4 +69,4 @@ print("----------Test 2 should not create new block for storing empty data------
 blockchain.add_block(data="")
 
 print("----------------------Test 3 get block by hash----------------------------------------")
-blockchain.get_block("")
+print(blockchain.get_block(""))
