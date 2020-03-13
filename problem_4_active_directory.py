@@ -48,7 +48,7 @@ def is_user_in_group(user=None, group=None):
     for sub_group in groups:
         return is_user_in_group(user, sub_group)
 
-    return Flase
+    return False
 
 
 
